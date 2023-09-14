@@ -1,10 +1,9 @@
-<% @museums.each do |museum| %>
-  <%= museum[:name] %> <br>
-  <%= museum[:postcode] %> <br>
-  <br><br>
-<% end %>
-
-<% @museums.group_by { |museum| museum.postcode }.each do |postcode|  %>
-  <%= postcode %>
+<% @museums.group_by { |museum| museum.postcode }.each do |postcode, museums|  %>
+  <%
+    results = {}
+      museum_names = museums.map { |museum| museum.name }
+      results[postcode] = museum_names
+  %>
+  <%= results %>
   <br><br>
 <% end %>
